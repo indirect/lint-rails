@@ -1,14 +1,5 @@
-name: 'Rails Tests'
+name: 'Rails Lint'
 description: 'Runs the tests for a Ruby on Rails application'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
-# outputs:
-#   random-number:
-#     description: "Random number"
-#     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
   steps:
