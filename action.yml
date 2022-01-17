@@ -1,0 +1,26 @@
+name: 'Rails Tests'
+description: 'Runs the tests for a Ruby on Rails application'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+# outputs:
+#   random-number:
+#     description: "Random number"
+#     value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install Ruby and gems
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Security audit dependencies
+      run: bin/bundler-audit --update
+    - name: Security audit application code
+      run: bin/brakeman -q -w2
+    - name: Lint Ruby files
+      run: bin/rubocop --parallel
